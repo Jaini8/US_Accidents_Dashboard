@@ -1,0 +1,32 @@
+# Blender MTL File: 'luxury-car.blend'
+# Material Count: 2
+
+newmtl Body
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\Body_Normal.png
+map_Kd Textures\\Body_BaseMultiply.png
+map_Ke Textures\\Body_Emissive.png
+map_Ns Textures\\Body_Roughness.png
+refl Textures\\Body_Metallic.png
+
+newmtl Wheels_&_Accesories
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.184470 0.184470 0.184470
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Textures\\Wheels & Accesories_Normal.png
+map_Kd Textures\\Wheels & Accesories_Multiply.png
+map_Ke Textures\\Wheels & Accesories_Emissive.png
+map_Ns Textures\\Wheels & Accesories_Roughness.png
+refl Textures\\Wheels & Accesories_Metallic.png

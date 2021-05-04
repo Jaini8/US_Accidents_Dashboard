@@ -1,0 +1,232 @@
+{% extends 'header.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+    .topMenu{
+        border-bottom: 3px solid #f1f2f7;
+    }
+    .topButton{
+        position: relative;
+        left: 40%;
+    }
+    #loader {
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+        position: absolute;
+        top: 40%;
+        left: 45%;
+    }
+
+    /*#mapDiv {
+        width: 50%;
+        max-height: 400px;
+    }*/
+
+    #optbox {
+        position: relative;
+        /*width: 30%;
+        top: -45%;
+        left: 60%;*/
+        max-height: 400px;
+        margin-bottom: 0px;
+    }
+
+    #information{
+        position: absolute;
+        background-color: black;
+        color: white;
+        width: 75%;
+        height: 200px;
+        overflow-y:scroll;
+    }
+
+    #subplotDiv {
+        margin-top: 0px;
+        max-width: 100%;
+        max-height: 25%;
+    }
+
+    #slider {
+        width: 50%;
+    }
+
+    @keyframes spin {
+        0% {transform: rotate(0deg);}
+        100% {transform: rotate(360deg);}
+    }
+
+    button:hover{
+        color: darkslategray;
+    }
+
+
+    .card {
+        padding: 15px 10px;
+        background: #ffffff;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 40px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        /*align-items: center;*/
+    }
+    /*body{
+        overflow-y:scroll;
+    }*/
+
+    /*input{
+        width: 10%;
+    }*/
+</style>
+
+
+<!-- Map, count and counties-->
+<div class="row">
+    <div class="col-lg-9"> 
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">State Map</h4>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card-body">
+                        <div id="plot1"></div>
+                        <input type="text" id="slider">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3"> 
+
+        <div class="card">
+            <div class="card-body">
+                <h3 class="box-title"> Fatalities Count</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 my-auto">
+                    <div class="card-body">
+                        <div id="count-reader">
+                            <h4 id="count"> </h4>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">County Map</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 my-auto">
+                    <div class="card-body">
+                        <div id="plot2">
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Age and Gender-->
+<div class="row">   
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">Age And Gender</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-1 my-auto">
+                    <div class="card-body">
+                    </div> <!-- /.card-body -->
+                </div>
+                <div class="col-lg-10">
+                    <div class="card-body">
+                        <div id="plot3" style= "width:100%; height: 350px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1">
+
+                </div>
+            </div> <!-- /.row -->
+            <div class="card-body"></div>
+        </div>
+    </div><!-- /# column -->
+</div>
+
+
+<!-- Day of the week and Hour-->
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">Day of the week</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-body">
+                        <div id="plot4" style= "width:100%; height: 350px;">
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">Hour of the Day</h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-body">
+                        <div id="plot5" style= "width:100%; height: 350px;">
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Slider -->
+<link rel="stylesheet" href="{% static 'rSlider.min.css' %}">
+<script src="{% static 'rSlider.min.js' %}"></script>
+
+
+<!-- Backend Data Capture -->
+<script  type="text/javascript">
+    var plot2Data = '{% autoescape off %}{{ plot2Data|escapejs }}{% endautoescape %}';
+    var plot3Data = '{% autoescape off %}{{ plot3Data|escapejs }}{% endautoescape %}';
+    var plot4Data = '{% autoescape off %}{{ plot4Data|escapejs }}{% endautoescape %}';
+    var plot5Data = '{% autoescape off %}{{ plot5Data|escapejs }}{% endautoescape %}';
+    /*console.log(plot2Data)*/
+    console.log("data fetched")
+</script>
+
+<!-- Custom Javascript -->
+<script type="text/javascript" src="{% static 'home.js' %}"></script>        
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+
+
+{% endblock %}

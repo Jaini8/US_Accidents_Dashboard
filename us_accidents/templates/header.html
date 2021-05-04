@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>US Accidents Analytics</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script type="text/javascript" src="{% static 'd3.min.js' %}"></script>
+        <script src="https://cdn.plot.ly/plotly-1.52.3.min.js" charset="utf-8"></script>
+        <!-- <script type="text/javascript" src="{% static 'plotly-latest.min.js' %}"></script> -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'header.css' %}"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'new_header.css' %}">
+    </head>
+
+    <body>
+       <div class="wrapper">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h2>US Accidents</h2>
+                    <strong>US</strong>
+                </div>
+        
+                <ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="{% url 'us_accidents_app:home' %}">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'us_accidents_app:index' %}">
+                            <i class="glyphicon glyphicon-map-marker"></i>
+                            Stats
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'us_accidents_app:factors' %}">
+                            <i class="glyphicon glyphicon-stats"></i>
+                            Factors
+                        </a>
+                        <a href="{% url 'us_accidents_app:insights' %}">
+                            <i class="glyphicon glyphicon-search"></i>
+                            Analysis
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-send"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+        
+            </nav>
+        
+            <!-- Page Content  -->
+            <div id="content">
+        
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+        
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <!-- <span>Toggle Sidebar</span> -->
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{% url 'us_accidents_app:home' %}">Home</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                {% block content %}
+      
+
+                {% endblock %}
+            </div>
+        </div>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                });
+                });
+        </script>
+
+        
+    </body>
+</html>
